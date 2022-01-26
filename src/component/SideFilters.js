@@ -29,7 +29,7 @@ import {
 export default function SideFilter({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box minH="0vh" bg={useColorModeValue("gray.100", "gray.900")}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: "none", md: "block" }}
@@ -49,7 +49,7 @@ export default function SideFilter({ children }) {
       </Drawer>
       {/* mobilenav */}
       <MobileNav display={{ base: "flex", md: "none" }} onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 6 }} p="4">
+      <Box ml={{ base: 0, md: 6 }} p="0">
         {children}
       </Box>
     </Box>

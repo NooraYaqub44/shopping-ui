@@ -15,11 +15,10 @@ let settings = {
   centerMode: true,
   infinite: true,
   centerPadding: "60px",
-  slidesToShow: 4,
+  slidesToShow: 3,
   slidesToScroll: 4,
   speed: 500,
   dots: true,
-  lazyLoad: true,
   afterChange: function(index) {
     console.log(
       `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
@@ -29,8 +28,8 @@ let settings = {
     {
       breakpoint: 1024,
       settings: {
-        slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToShow: 1,
+        slidesToScroll: 1,
         infinite: true,
         dots: true,
       },
@@ -39,7 +38,7 @@ let settings = {
       breakpoint: 600,
       settings: {
         slidesToShow: 1,
-        slidesToScroll: 2,
+        slidesToScroll: 1,
         initialSlide: 1,
       },
     },
@@ -55,10 +54,10 @@ let settings = {
 export default function ProductSlider() {
   // As we have used custom buttons, we need a reference variable to
   // change the state
-  const [slider, setSlider] = useState(null);
+  const [, setSlider] = useState(null);
   return (
     <Center pb="20">
-      <Box height={"400px"} width={{ base: "90%", md: "90%" }}>
+      <Box height={"400px"} width={{ base: "100%", md: "90%" }}>
         {/* CSS files for react-slick */}
         <link
           rel="stylesheet"

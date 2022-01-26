@@ -39,6 +39,7 @@ const collection = [
   { id: 2, name: "Kent Dodds", src: "https://bit.ly/kent-c-dodds" },
   { id: 3, name: "Segun Adebayo", src: "https://bit.ly/sage-adebayo" },
   { id: 4, name: "Ryan Florence", src: "https://bit.ly/ryan-florence" },
+  { id: 4, name: "Ryan Florence", src: "https://bit.ly/ryan-florence" },
 ];
 const Sizes = [38, 40, 42, 44, 46];
 export default function ProductSimple() {
@@ -100,8 +101,8 @@ export default function ProductSimple() {
           <Modal
             isOpen={isOpen}
             onClose={onClose}
-            size="5xl" // `trapFocus` and `blockScrollOnMount` are only switched off so that the preview works properly.
-            blockScrollOnMount={false}
+            size='4xl'
+            blockScrollOnMount={true}
             trapFocus={true}
           >
             <ModalOverlay />
@@ -112,26 +113,27 @@ export default function ProductSimple() {
                   <Stack
                     borderWidth="1px"
                     borderRadius="lg"
-                    height={{ sm: "500px", md: "28rem" }}
+                    width={{sm: "full", md: "full"}}
+                    height={{ sm: "20rem", md: "28rem" }}
                     direction={{ base: "column", md: "row" }}
                     bg={useColorModeValue("white", "gray.900")}
                     boxShadow={"2xl"}
                     padding={2}
                     margin={2}
                   >
-                    <Flex>
-                      <VStack direction="row">
+                    <Flex borderRadius="md">
+                      <Flex direction={{base:"row",md:"column"}} overflow="auto">
                         {collection.map((mag) => (
                           <Image
                             key={mag.id}
-                            boxSize="100px"
+                            boxSize={{base:"65px", md:"100px"}}
                             objectFit="cover"
                             src={mag.src}
                             alt={mag.name}
                             onClick={()=>setImage(mag.src)}
                           />
                         ))}
-                      </VStack>
+                      </Flex>
                     </Flex>
 
                     <Flex flex={1} bg="blue.200">

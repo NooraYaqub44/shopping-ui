@@ -23,7 +23,6 @@ import {
   Center,
   useControllableState,
   Heading,
-  VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
@@ -103,19 +102,19 @@ function Shop() {
                   padding={2}
                   margin={2}
                 >
-                  <Flex>
-                    <VStack direction="row">
+                      <Flex>
+                      <Flex direction={{base:"row",md:"column"}}>
                       {collection.map((mag) => (
                         <Image
                           key={mag.id}
-                          boxSize="100px"
+                          boxSize={{base:"65px", md:"100px"}}
                           objectFit="cover"
                           src={mag.src}
                           alt={mag.name}
                           onClick={() => setImage(mag.src)}
                         />
                       ))}
-                    </VStack>
+                    </Flex>
                   </Flex>
 
                   <Flex flex={1} bg="blue.200">

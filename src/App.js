@@ -10,8 +10,8 @@ import Shopping from './Pages/Shopping';
 export default function App() {
   return (
     <ChakraProvider>
+      <Navigation/>
       <Router>
-        <Navigation/>  
         <Routes> 
         <Route path='/' element={<AppContainer/>} />
         <Route path='/product' element={<Products/>} />
