@@ -17,9 +17,11 @@ import {
   Wrap,
   WrapItem,
   Flex,
+  VStack,
 } from "@chakra-ui/react";
 import "reactjs-popup/dist/index.css";
 import { useControllableState } from "@chakra-ui/react";
+import { useState } from "react";
 
 const IMAGE =
   "https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80";
@@ -32,10 +34,23 @@ const data = {
   rating: 4.2,
   numReviews: 34,
 };
+const collection = [
+  { id: 1, name: "Dan Abrahmov", src: "https://bit.ly/dan-abramov" },
+  { id: 2, name: "Kent Dodds", src: "https://bit.ly/kent-c-dodds" },
+  { id: 3, name: "Segun Adebayo", src: "https://bit.ly/sage-adebayo" },
+  { id: 4, name: "Ryan Florence", src: "https://bit.ly/ryan-florence" },
+];
 const Sizes = [38, 40, 42, 44, 46];
 export default function ProductSimple() {
-  const [value, setValue] = useControllableState({ defaultValue: 40 });
+  const [value, setValue] = useControllableState({ defaultValue: 1 });
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [image, setImage] = useState(
+    "https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80"
+  );
+
+  function handleChangeImage({ e }) {
+    setImage(e.target.value);
+  }
 
   return (
     <Center py={12}>
@@ -81,14 +96,13 @@ export default function ProductSimple() {
             src={IMAGE}
             onClick={onOpen}
           />
-       
+
           <Modal
             isOpen={isOpen}
             onClose={onClose}
-            size="2xl" // `trapFocus` and `blockScrollOnMount` are only switched off so that the preview works properly.
+            size="5xl" // `trapFocus` and `blockScrollOnMount` are only switched off so that the preview works properly.
             blockScrollOnMount={false}
             trapFocus={true}
-            
           >
             <ModalOverlay />
             <ModalContent borderRadius="2xl">
@@ -105,13 +119,29 @@ export default function ProductSimple() {
                     padding={2}
                     margin={2}
                   >
+                    <Flex>
+                      <VStack direction="row">
+                        {collection.map((mag) => (
+                          <Image
+                            key={mag.id}
+                            boxSize="100px"
+                            objectFit="cover"
+                            src={mag.src}
+                            alt={mag.name}
+                            onClick={()=>setImage(mag.src)}
+                          />
+                        ))}
+                      </VStack>
+                    </Flex>
+
                     <Flex flex={1} bg="blue.200">
                       <Image
-                        src={data.imageURL}
+                        src={image}
                         alt={`Picture of ${data.name}`}
                         objectFit="cover"
                         rounded={"lg"}
                         roundedTop="lg"
+                        onChange={handleChangeImage}
                       />
                     </Flex>
                     <Stack
@@ -158,57 +188,23 @@ export default function ProductSimple() {
                           </Box>{" "}
                         </Text>
                       </Stack>
-
                       <Stack
                         align={"center"}
                         justify={"center"}
                         direction={"row"}
                         mt={6}
                       >
-                        <Wrap>
-                          <WrapItem>
-                            <Avatar
-                              name="Dan Abrahmov"
-                              src="https://bit.ly/dan-abramov"
-                            />
-                          </WrapItem>
-                          <WrapItem>
-                            <Avatar
-                              name="Kola Tioluwani"
-                              src="https://bit.ly/tioluwani-kolawole"
-                            />
-                          </WrapItem>
-                          <WrapItem>
-                            <Avatar
-                              name="Kent Dodds"
-                              src="https://bit.ly/kent-c-dodds"
-                            />
-                          </WrapItem>
-                          <WrapItem>
-                            <Avatar
-                              name="Ryan Florence"
-                              src="https://bit.ly/ryan-florence"
-                            />
-                          </WrapItem>
-                          <WrapItem>
-                            <Avatar
-                              name="Prosper Otemuyiwa"
-                              src="https://bit.ly/prosper-baba"
-                            />
-                          </WrapItem>
-                          <WrapItem>
-                            <Avatar
-                              name="Christian Nwamba"
-                              src="https://bit.ly/code-beast"
-                            />
-                          </WrapItem>
-                          <WrapItem>
-                            <Avatar
-                              name="Segun Adebayo"
-                              src="https://bit.ly/sage-adebayo"
-                            />
-                          </WrapItem>
-                        </Wrap>
+                        {collection.map((img) => (
+                          <Wrap key={img.id}>
+                            <WrapItem>
+                              <Avatar
+                                name={img.name}
+                                src={img.src}
+                                onClick={() => setImage(img.src)}
+                              />
+                            </WrapItem>
+                          </Wrap>
+                        ))}
                       </Stack>
 
                       <Stack mt={"2rem"} direction={"row"} padding={2}>
