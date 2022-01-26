@@ -1,4 +1,4 @@
-import { Flex, Stack } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import React from "react";
 import { ProductList } from "../component/Products/ProductList";
 import SideFilter from "../component/SideFilters";

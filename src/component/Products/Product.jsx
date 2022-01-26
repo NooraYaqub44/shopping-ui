@@ -17,7 +17,6 @@ import {
   Wrap,
   WrapItem,
   Flex,
-  VStack,
 } from "@chakra-ui/react";
 import "reactjs-popup/dist/index.css";
 import { useControllableState } from "@chakra-ui/react";
